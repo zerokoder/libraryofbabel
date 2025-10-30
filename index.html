@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>🎪 Магазин Мемов - Купи уникальные мемы онлайн</title>
+    <meta name="description" content="Уникальный интернет-магазин мемов. Широкий выбор, удобная корзина, быстрое оформление заказа. Купите свой любимый мем прямо сейчас!">
+    <meta name="keywords" content="мемы, интернет магазин, мемы купить, магазин мемов, онлайн магазин">
+    <meta name="author" content="Магазин Мемов">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="🎪 Магазин Мемов - Купи уникальные мемы онлайн">
+    <meta property="og:description" content="Уникальный интернет-магазин мемов. Широкий выбор, удобная корзина, быстрое оформление заказа.">
+    <meta property="og:image" content="https://yourdomain.com/preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourdomain.com/">
+    <meta property="twitter:title" content="🎪 Магазин Мемов">
+    <meta property="twitter:description" content="Уникальный интернет-магазин мемов. Широкий выбор, удобная корзина.">
+    <meta property="twitter:image" content="https://yourdomain.com/preview.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎪</text></svg>">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .edit-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .edit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+
+        .edit-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .edit-controls {
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        .edit-controls.active {
+            display: block;
+        }
+
+        .edit-controls button {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .add-product-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .add-product-btn:hover {
+            background: #45a049;
+        }
+
+        .export-btn {
+            background: #2196F3;
+            color: white;
+        }
+
+        .export-btn:hover {
+            background: #0b7dda;
+        }
+
+        .import-btn {
+            background: #ff9800;
+            color: white;
+        }
+
+        .import-btn:hover {
+            background: #e68900;
+        }
+
+        .edit-title-btn {
+            background: #9C27B0;
+            color: white;
+        }
+
+        .edit-title-btn:hover {
+            background: #7B1FA2;
+        }
+
+        .edit-bg-btn {
+            background: #E91E63;
+            color: white;
+        }
+
+        .edit-bg-btn:hover {
+            background: #C2185B;
+        }
+
+        .edit-music-btn {
+            background: #FF5722;
+            color: white;
+        }
+
+        .edit-music-btn:hover {
+            background: #E64A19;
+        }
+
+        .edit-price-btn {
+            background: #00BCD4;
+            color: white;
+        }
+
+        .edit-price-btn:hover {
+            background: #0097A7;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            min-width: 300px;
+        }
+
+        .music-player.active {
+            display: block;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .music-play-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-play-btn:hover {
+            background: #45a049;
+        }
+
+        .music-info {
+            flex: 1;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .music-close-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-slider {
+            flex: 1;
+        }
+
+        .cart-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+        }
+
+        .cart-count {
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #f5f5f5;
+        }
+
+        .product-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.5em;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #45a049;
+        }
+
+        .edit-mode .add-to-cart-btn {
+            display: none;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: none;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .edit-mode .delete-btn {
+            display: block;
+        }
+
+        .edit-mode .product-card {
+            cursor: pointer;
+            border: 2px dashed #ccc;
+        }
+
+        .modal {
+            display: none !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex !important;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            gap: 15px;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 5px;
+            background: #f5f5f5;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        .remove-item-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .cart-total {
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .checkout-btn:hover {
+            background: #45a049;
+        }
+
+        .bg-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .bg-option {
+            height: 60px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .bg-option:hover {
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        .bg-option.active {
+            border-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <button class="cart-btn" onclick="openCart()">🛒 Корзина <span class="cart-count" id="cart-count">0</span></button>
+
+    <div class="container">
+        <h1 id="site-title">🎪 Магазин Мемов 🎪</h1>
+        <div style="text-align: center; margin: 20px 0 40px 0; font-size: 28px; color: white; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            💰 У тебя 500.000, что купишь? 💰
+        </div>
+        <div class="products-grid" id="products-grid"></div>
+    </div>
+
+    <!-- Modal for adding/editing products -->
+    <div class="modal" id="product-modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <h2 id="modal-title">Добавить товар</h2>
+            <input type="text" id="product-name" placeholder="Название товара">
+            <input type="text" id="product-price" placeholder="Цена (например: 500₽)">
+            <label class="file-label" for="product-image">📷 Выбрать изображение</label>
+            <input type="file" id="product-image" accept="image/*" onchange="previewImage(event)">
+            <img id="preview" class="preview-image">
+            <div>
+                <button class="save-btn" onclick="saveProduct()">Сохранить</button>
+                <button class="cancel-btn" onclick="closeModal()">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal" onclick="if(event.target === this) closeCartModal()">
+        <div class="modal-content">
+            <h2>🛒 Корзина</h2>
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-total" id="cart-total-display">Итого: 0₽</div>
+            <button class="checkout-btn" onclick="checkout()">Оформить заказ</button>
+            <div style="margin-top: 10px;">
+                <button class="cancel-btn" onclick="closeCartModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Modal -->
+    <div class="modal" id="bg-modal" onclick="if(event.target === this) closeBgModal()">
+        <div class="modal-content">
+            <h2>🎨 Выбрать фон</h2>
+            <div class="bg-options">
+                <div class="bg-option" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" onclick="changeBackground('linear-gradient(135deg, #667eea 0%, #764ba2 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" onclick="changeBackground('linear-gradient(135deg, #f093fb 0%, #f5576c 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="changeBackground('linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);" onclick="changeBackground('linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);" onclick="changeBackground('linear-gradient(135deg, #fa709a 0%, #fee140 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);" onclick="changeBackground('linear-gradient(135deg, #30cfd0 0%, #330867 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);" onclick="changeBackground('linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);" onclick="changeBackground('linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)')"></div>
+                <div class="bg-option" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);" onclick="changeBackground('linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)')"></div>
+            </div>
+            <label class="file-label" for="bg-image">📷 Загрузить свою картинку</label>
+            <input type="file" id="bg-image" accept="image/*" onchange="uploadBackground(event)">
+            <div style="margin-top: 15px;">
+                <button class="cancel-btn" onclick="closeBgModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Modal -->
+    <div class="modal" id="music-modal" onclick="if(event.target === this) closeMusicModal()">
+        <div class="modal-content">
+            <h2>🎵 Добавить музыку</h2>
+            <p style="margin: 15px 0; color: #666;">Загрузите MP3 файл для фоновой музыки</p>
+            <label class="file-label" for="music-file">🎵 Выбрать аудио файл (MP3)</label>
+            <input type="file" id="music-file" accept="audio/*" onchange="uploadMusic(event)">
+            <div id="current-music-info" style="margin: 15px 0; padding: 10px; background: #f5f5f5; border-radius: 5px; display: none;">
+                <strong>Текущая музыка:</strong>
+                <div id="current-music-name" style="margin-top: 5px;"></div>
+            </div>
+            <div style="margin-top: 15px;">
+                <button class="save-btn" onclick="removeMusic()" style="background: #f44336;">Удалить музыку</button>
+                <button class="cancel-btn" onclick="closeMusicModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Price Change Modal -->
+    <div class="modal" id="price-modal" onclick="if(event.target === this) closePriceModal()">
+        <div class="modal-content">
+            <h2>💰 Изменить цены</h2>
+            <p style="margin: 15px 0; color: #666;">Примените скидку или наценку ко всем товарам</p>
+            <div style="margin: 15px 0;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Процент изменения:</label>
+                <input type="number" id="price-percent" placeholder="Например: -20 (скидка) или +15 (наценка)" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 5px;">
+                <p style="margin-top: 10px; font-size: 12px; color: #999;">
+                    • Введите отрицательное число для скидки (например: -20)<br>
+                    • Введите положительное число для наценки (например: +15)
+                </p>
+            </div>
+            <div style="margin-top: 15px;">
+                <button class="save-btn" onclick="applyPriceChange()">✅ Применить</button>
+                <button class="cancel-btn" onclick="closePriceModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+        <div class="music-controls">
+            <button class="music-play-btn" id="play-btn" onclick="toggleMusic()">▶</button>
+            <div class="music-info" id="music-name">Нет музыки</div>
+            <button class="music-close-btn" onclick="hideMusicPlayer()">×</button>
+        </div>
+        <div class="volume-control">
+            <span>🔊</span>
+            <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50" oninput="changeVolume(this.value)">
+            <span id="volume-value">50%</span>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="background-audio" loop></audio>
+
+    <script>
+        let siteTitle = "🎪 Магазин Мемов 🎪";
+        let cart = [];
+        let currentBackground = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+        let musicData = null;
+        let musicName = "";
+        let musicVolume = 50;
+        let isPlaying = false;
+        let products = [
+            {
+                id: 1,
+                name: "Факи 🖕 - Красный",
+                price: "500₽",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='50%25' y='50%25' font-size='120' text-anchor='middle' dominant-baseline='central'%3E🖕%3C/text%3E%3Ctext x='50%25' y='80%25' font-size='20' fill='red' text-anchor='middle'%3EКРАСНЫЙ%3C/text%3E%3C/svg%3E"
+            },
+            {
+                id: 2,
+                name: "Факи 🖕 - Синий",
+                price: "500₽",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='50%25' y='50%25' font-size='120' text-anchor='middle' dominant-baseline='central'%3E🖕%3C/text%3E%3Ctext x='50%25' y='80%25' font-size='20' fill='blue' text-anchor='middle'%3EСИНИЙ%3C/text%3E%3C/svg%3E"
+            },
+            {
+                id: 3,
+                name: "Факи 🖕 - Зеленый",
+                price: "500₽",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='50%25' y='50%25' font-size='120' text-anchor='middle' dominant-baseline='central'%3E🖕%3C/text%3E%3Ctext x='50%25' y='80%25' font-size='20' fill='green' text-anchor='middle'%3EЗЕЛЕНЫЙ%3C/text%3E%3C/svg%3E"
+            },
+            {
+                id: 4,
+                name: 'Мем "Людское"',
+                price: "1000₽",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='40%25' font-size='60' text-anchor='middle'%3E🤔%3C/text%3E%3Ctext x='50%25' y='70%25' font-size='20' text-anchor='middle' font-weight='bold'%3EЛЮДСКОЕ%3C/text%3E%3C/svg%3E"
+            },
+            {
+                id: 5,
+                name: 'Мем "Почему"',
+                price: "1200₽",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23e3f2fd'/%3E%3Ctext x='50%25' y='35%25' font-size='50' text-anchor='middle'%3E🐴%3C/text%3E%3Ctext x='50%25' y='60%25' font-size='24' text-anchor='middle' font-weight='bold'%3EПОЧЕМУ%3C/text%3E%3Ctext x='50%25' y='80%25' font-size='30' text-anchor='middle'%3E🌊%3C/text%3E%3C/svg%3E"
+            }
+        ];
+
+        let editMode = false;
+        let currentEditId = null;
+
+        // Load site title, products, cart, and background from localStorage if available
+        if (localStorage.getItem('siteTitle')) {
+            siteTitle = localStorage.getItem('siteTitle');
+            document.getElementById('site-title').textContent = siteTitle;
+        }
+
+        if (localStorage.getItem('products')) {
+            products = JSON.parse(localStorage.getItem('products'));
+        }
+
+        // Корзина всегда начинается пустой
+        cart = [];
+        localStorage.removeItem('cart');
+        updateCartCount();
+
+        if (localStorage.getItem('background')) {
+            currentBackground = localStorage.getItem('background');
+            document.body.style.background = currentBackground;
+        }
+
+        if (localStorage.getItem('musicData')) {
+            musicData = localStorage.getItem('musicData');
+            musicName = localStorage.getItem('musicName') || 'Музыка';
+            musicVolume = parseInt(localStorage.getItem('musicVolume')) || 50;
+            loadMusic();
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('products', JSON.stringify(products));
+            localStorage.setItem('siteTitle', siteTitle);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('background', currentBackground);
+            if (musicData) {
+                localStorage.setItem('musicData', musicData);
+                localStorage.setItem('musicName', musicName);
+                localStorage.setItem('musicVolume', musicVolume);
+            } else {
+                localStorage.removeItem('musicData');
+                localStorage.removeItem('musicName');
+                localStorage.removeItem('musicVolume');
+            }
+        }
+
+        function loadMusic() {
+            if (musicData) {
+                const audio = document.getElementById('background-audio');
+                audio.src = musicData;
+                audio.volume = musicVolume / 100;
+
+                document.getElementById('music-name').textContent = musicName;
+                document.getElementById('volume-slider').value = musicVolume;
+                document.getElementById('volume-value').textContent = musicVolume + '%';
+                document.getElementById('music-player').classList.add('active');
+
+                // Update modal info
+                document.getElementById('current-music-info').style.display = 'block';
+                document.getElementById('current-music-name').textContent = musicName;
+            }
+        }
+
+        function openMusicModal() {
+            document.getElementById('music-modal').classList.add('active');
+        }
+
+        function closeMusicModal() {
+            document.getElementById('music-modal').classList.remove('active');
+        }
+
+        function uploadMusic(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    musicData = e.target.result;
+                    musicName = file.name;
+
+                    loadMusic();
+                    saveToStorage();
+
+                    alert('Музыка загружена! Нажмите на кнопку воспроизведения в плеере.');
+                    closeMusicModal();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeMusic() {
+            if (confirm('Вы уверены, что хотите удалить музыку?')) {
+                const audio = document.getElementById('background-audio');
+                audio.pause();
+                audio.src = '';
+
+                musicData = null;
+                musicName = '';
+                isPlaying = false;
+
+                document.getElementById('music-player').classList.remove('active');
+                document.getElementById('play-btn').textContent = '▶';
+                document.getElementById('current-music-info').style.display = 'none';
+
+                saveToStorage();
+                closeMusicModal();
+
+                alert('Музыка удалена');
+            }
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('background-audio');
+            const playBtn = document.getElementById('play-btn');
+
+            if (!musicData) {
+                alert('Сначала загрузите музыку через кнопку "🎵 Добавить музыку"');
+                return;
+            }
+
+            if (isPlaying) {
+                audio.pause();
+                playBtn.textContent = '▶';
+                isPlaying = false;
+            } else {
+                audio.play().catch(err => {
+                    console.error('Ошибка воспроизведения:', err);
+                    alert('Не удалось воспроизвести музыку. Попробуйте другой файл.');
+                });
+                playBtn.textContent = '⏸';
+                isPlaying = true;
+            }
+        }
+
+        function changeVolume(value) {
+            musicVolume = parseInt(value);
+            const audio = document.getElementById('background-audio');
+            audio.volume = musicVolume / 100;
+            document.getElementById('volume-value').textContent = musicVolume + '%';
+            saveToStorage();
+        }
+
+        function hideMusicPlayer() {
+            const audio = document.getElementById('background-audio');
+            audio.pause();
+            isPlaying = false;
+            document.getElementById('play-btn').textContent = '▶';
+            document.getElementById('music-player').classList.remove('active');
+        }
+
+        function editSiteTitle() {
+            const newTitle = prompt('Введите новое название сайта:', siteTitle);
+            if (newTitle !== null && newTitle.trim() !== '') {
+                siteTitle = newTitle;
+                document.getElementById('site-title').textContent = siteTitle;
+                saveToStorage();
+            }
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+
+            updateCartCount();
+            saveToStorage();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            saveToStorage();
+            renderCart();
+        }
+
+        function changeQuantity(productId, delta) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+
+            if (item.quantity <= 0) {
+                removeFromCart(productId);
+            } else {
+                updateCartCount();
+                saveToStorage();
+                renderCart();
+            }
+        }
+
+        function renderCart() {
+            console.log('Rendering cart, items:', cart.length);
+            const cartItemsContainer = document.getElementById('cart-items');
+
+            if (!cartItemsContainer) {
+                console.error('Cart items container not found!');
+                return;
+            }
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart">Корзина пуста</div>';
+                const totalDisplay = document.getElementById('cart-total-display');
+                if (totalDisplay) {
+                    totalDisplay.textContent = 'Итого: 0₽';
+                }
+                return;
+            }
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const priceNum = parseInt(item.price.replace(/\D/g, ''));
+                total += priceNum * item.quantity;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price}</div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="qty-btn" onclick="changeQuantity(${item.id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
+                    </div>
+                    <button class="remove-item-btn" onclick="removeFromCart(${item.id})">Удалить</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            const totalDisplay = document.getElementById('cart-total-display');
+            if (totalDisplay) {
+                totalDisplay.textContent = `Итого: ${total}₽`;
+            }
+        }
+
+        function openCart() {
+            console.log('=== OPENING CART ===');
+            console.log('Cart contents:', cart);
+
+            const modal = document.getElementById('cart-modal');
+            console.log('Modal element:', modal);
+
+            if (!modal) {
+                console.error('ERROR: Cart modal not found!');
+                alert('ОШИБКА: Модальное окно корзины не найдено!');
+                return;
+            }
+
+            console.log('Before adding class, modal.className:', modal.className);
+            renderCart();
+            modal.classList.add('active');
+            console.log('After adding class, modal.className:', modal.className);
+            console.log('Modal display style:', window.getComputedStyle(modal).display);
+
+            // Force display just in case
+            modal.style.display = 'flex';
+            console.log('=== CART OPENED ===');
+        }
+
+        function closeCartModal() {
+            console.log('Closing cart...');
+            const modal = document.getElementById('cart-modal');
+            if (modal) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Корзина пуста!');
+                return;
+            }
+
+            alert('Спасибо за заказ! Скоро с вами свяжутся.');
+            cart = [];
+            updateCartCount();
+            saveToStorage();
+            closeCartModal();
+        }
+
+        function openBgModal() {
+            document.getElementById('bg-modal').classList.add('active');
+        }
+
+        function closeBgModal() {
+            document.getElementById('bg-modal').classList.remove('active');
+        }
+
+        function changeBackground(gradient) {
+            currentBackground = gradient;
+            document.body.style.background = gradient;
+            saveToStorage();
+        }
+
+        function uploadBackground(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentBackground = `url('${e.target.result}')`;
+                    document.body.style.background = currentBackground;
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                    document.body.style.backgroundAttachment = 'fixed';
+                    saveToStorage();
+                    closeBgModal();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <button class="delete-btn" onclick="deleteProduct(${product.id})">×</button>
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">${product.price}</div>
+                    <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})">🛒 Добавить в корзину</button>
+                `;
+
+                if (editMode) {
+                    card.onclick = () => editProduct(product.id);
+                }
+
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            const btn = document.querySelector('.edit-btn');
+            const controls = document.querySelector('.edit-controls');
+            const grid = document.querySelector('.products-grid');
+
+            if (editMode) {
+                btn.classList.add('active');
+                btn.textContent = '✅ Редактирование';
+                controls.classList.add('active');
+                grid.classList.add('edit-mode');
+            } else {
+                btn.classList.remove('active');
+                btn.textContent = '✏️ Редактировать';
+                controls.classList.remove('active');
+                grid.classList.remove('edit-mode');
+            }
+
+            renderProducts();
+        }
+
+        function openAddModal() {
+            currentEditId = null;
+            document.getElementById('modal-title').textContent = 'Добавить товар';
+            document.getElementById('product-name').value = '';
+            document.getElementById('product-price').value = '';
+            document.getElementById('product-image').value = '';
+            document.getElementById('preview').style.display = 'none';
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        function editProduct(id) {
+            if (!editMode) return;
+
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            currentEditId = id;
+            document.getElementById('modal-title').textContent = 'Редактировать товар';
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('preview').src = product.image;
+            document.getElementById('preview').style.display = 'block';
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+            currentEditId = null;
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('product-name').value;
+            const price = document.getElementById('product-price').value;
+            const imageInput = document.getElementById('product-image');
+            const preview = document.getElementById('preview');
+
+            if (!name || !price) {
+                alert('Пожалуйста, заполните название и цену');
+                return;
+            }
+
+            if (currentEditId) {
+                // Edit existing product
+                const product = products.find(p => p.id === currentEditId);
+                product.name = name;
+                product.price = price;
+
+                if (imageInput.files.length > 0) {
+                    product.image = preview.src;
+                }
+            } else {
+                // Add new product
+                const newProduct = {
+                    id: Date.now(),
+                    name: name,
+                    price: price,
+                    image: preview.src || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect width='200' height='200' fill='%23ddd'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dominant-baseline='central'%3E❓%3C/text%3E%3C/svg%3E"
+                };
+                products.push(newProduct);
+            }
+
+            saveToStorage();
+            renderProducts();
+            closeModal();
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Вы уверены, что хотите удалить этот товар?')) {
+                products = products.filter(p => p.id !== id);
+                saveToStorage();
+                renderProducts();
+            }
+        }
+
+        function exportData() {
+            const exportObj = {
+                siteTitle: siteTitle,
+                products: products,
+                background: currentBackground,
+                musicData: musicData,
+                musicName: musicName,
+                musicVolume: musicVolume
+            };
+            const dataStr = JSON.stringify(exportObj, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'магазин-данные-' + Date.now() + '.json';
+            link.click();
+            URL.revokeObjectURL(url);
+            alert('Данные экспортированы! Отправьте этот файл другому человеку.');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+
+                    // Support both old format (array) and new format (object with siteTitle)
+                    if (Array.isArray(importedData)) {
+                        // Old format - just products array
+                        if (confirm('Импортировать данные? Это заменит текущие товары.')) {
+                            products = importedData;
+                            saveToStorage();
+                            renderProducts();
+                            alert('Данные успешно импортированы!');
+                        }
+                    } else {
+                        // New format - object with siteTitle, products, background, and music
+                        if (confirm('Импортировать данные? Это заменит текущие товары, название сайта, фон и музыку.')) {
+                            if (importedData.siteTitle) {
+                                siteTitle = importedData.siteTitle;
+                                document.getElementById('site-title').textContent = siteTitle;
+                            }
+                            if (importedData.products) {
+                                products = importedData.products;
+                            }
+                            if (importedData.background) {
+                                currentBackground = importedData.background;
+                                document.body.style.background = currentBackground;
+                                // Handle background images
+                                if (currentBackground.startsWith('url(')) {
+                                    document.body.style.backgroundSize = 'cover';
+                                    document.body.style.backgroundPosition = 'center';
+                                    document.body.style.backgroundAttachment = 'fixed';
+                                }
+                            }
+                            if (importedData.musicData) {
+                                musicData = importedData.musicData;
+                                musicName = importedData.musicName || 'Музыка';
+                                musicVolume = importedData.musicVolume || 50;
+                                loadMusic();
+                            }
+                            saveToStorage();
+                            renderProducts();
+                            alert('Данные успешно импортированы!');
+                        }
+                    }
+                } catch (error) {
+                    alert('Ошибка при импорте данных: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function openPriceModal() {
+            document.getElementById('price-modal').classList.add('active');
+            document.getElementById('price-percent').value = '';
+        }
+
+        function closePriceModal() {
+            document.getElementById('price-modal').classList.remove('active');
+        }
+
+        function applyPriceChange() {
+            const percent = parseFloat(document.getElementById('price-percent').value);
+
+            if (isNaN(percent)) {
+                alert('Пожалуйста, введите число');
+                return;
+            }
+
+            if (percent === 0) {
+                alert('Процент не может быть равен 0');
+                return;
+            }
+
+            const confirmMsg = percent > 0
+                ? `Применить наценку ${percent}% ко всем товарам?`
+                : `Применить скидку ${Math.abs(percent)}% ко всем товарам?`;
+
+            if (!confirm(confirmMsg)) {
+                return;
+            }
+
+            let changedCount = 0;
+            products.forEach(product => {
+                // Extract number from price string (e.g., "500₽" -> 500)
+                const currentPrice = parseInt(product.price.replace(/\D/g, ''));
+
+                if (!isNaN(currentPrice) && currentPrice > 0) {
+                    // Calculate new price
+                    const newPrice = Math.round(currentPrice * (1 + percent / 100));
+
+                    // Update price, keeping the currency symbol
+                    const currencySymbol = product.price.replace(/[\d\s]/g, '');
+                    product.price = newPrice + currencySymbol;
+                    changedCount++;
+                }
+            });
+
+            saveToStorage();
+            renderProducts();
+            closePriceModal();
+
+            const resultMsg = percent > 0
+                ? `Наценка ${percent}% применена к ${changedCount} товарам`
+                : `Скидка ${Math.abs(percent)}% применена к ${changedCount} товарам`;
+
+            alert(resultMsg);
+        }
+
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
